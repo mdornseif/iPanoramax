@@ -3,7 +3,7 @@
 
 name: iPanoramax
 options:
-  bundleIdPrefix: net.vuylsteker
+  bundleIdPrefix: de.dornseif
   deploymentTarget:
     iOS: "17.0"
   createIntermediateGroups: true
@@ -21,6 +21,10 @@ settings:
 packages:
   PanoramaxKit:
     path: ../Packages/PanoramaxKit
+  ImageMetadataKit:
+    path: ../Packages/ImageMetadataKit
+  GeoKit:
+    path: ../Packages/GeoKit
   # Ajoutés en phase 4
   # MapLibre:
   #   url: https://github.com/maplibre/maplibre-gl-native-distribution
@@ -34,6 +38,8 @@ targets:
       - path: iPanoramax
     dependencies:
       - package: PanoramaxKit
+      - package: ImageMetadataKit
+      - package: GeoKit
     info:
       path: iPanoramax/Info.plist
       properties:
@@ -44,6 +50,9 @@ targets:
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
         ITSAppUsesNonExemptEncryption: false
+        # Fotos und series.json in der Dateien-App sichtbar machen.
+        UIFileSharingEnabled: true
+        LSSupportsOpeningDocumentsInPlace: true
 
         # --- Autorisations ---
         # Rédigées à la première personne, en expliquant l'usage : c'est ce que
@@ -73,7 +82,7 @@ targets:
 
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: net.vuylsteker.ipanoramax
+        PRODUCT_BUNDLE_IDENTIFIER: de.dornseif.ipanoramax
         INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
 
   iPanoramaxTests:
